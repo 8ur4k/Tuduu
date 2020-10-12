@@ -1,0 +1,11 @@
+.logo {
+  width: 500;
+}
+
+.background {
+  max-width: 500px;
+  margin: auto;
+  color: aliceblue;
+  background: rgb(42, 49, 60);
+  background: linear-gradient(225deg, rgba(42, 49, 60, 1) 0%, rgba(37, 43, 55, 1) 51%, rgba(48, 54, 66, 1) 100%);
+}

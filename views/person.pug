@@ -1,0 +1,10 @@
+extends layout
+
+
+block content
+  h1 The number of people is #{people.length}
+    hr
+  each person in people
+    h1 #{person.name} #{person.surname} 
+    h2 Yaş: #{person.age}
+    hr
