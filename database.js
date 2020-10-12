@@ -2,9 +2,10 @@ const people = [];
 
 // CREATE
 function addPerson(name, surname, age) {
-  people.push({ name, surname, age });
+  const id = Date.now();
+  people.push({ name, surname, age, id });
 
-  return { name, surname, age };
+  return { name, surname, age, id };
 }
 // READ
 function getAllPersons() {
