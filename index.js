@@ -42,8 +42,8 @@ app.get("/people/:name", (req, res) => {
 });
 
 // UPDATE
-app.patch("/people", (req, res) => {
-  const result = Database.updatePerson(req.body.name, req.body.newname);
+app.patch("/people/:name", (req, res) => {
+  const result = Database.updatePerson(req.body, req.params.name);
 
   res.status(200).json({
     status: "success",

@@ -11,13 +11,17 @@ function getAllPersons() {
   return people;
 }
 // UPDATE
-function updatePerson(name, newname) {
+function updatePerson(updatedFields, name) {
+  const keys = Object.keys(updatedFields);
+
   for (var i = 0; i < people.length; i++) {
     var obj = people[i];
 
     if (obj.name == name) {
-      obj.name = newname;
-      return people[i];
+      for (var index = 0; index < keys.length; index++) {
+        people[i][keys[index]] = updatedFields[keys[index]];
+      }
+      return people;
     }
   }
 }
