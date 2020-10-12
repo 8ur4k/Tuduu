@@ -12,13 +12,13 @@ function getAllPersons() {
   return people;
 }
 // UPDATE
-function updatePerson(updatedFields, name) {
+function updatePerson(updatedFields, id) {
   const keys = Object.keys(updatedFields);
 
   for (var i = 0; i < people.length; i++) {
     var obj = people[i];
 
-    if (obj.name == name) {
+    if (obj.id == id) {
       for (var index = 0; index < keys.length; index++) {
         people[i][keys[index]] = updatedFields[keys[index]];
       }
@@ -27,22 +27,22 @@ function updatePerson(updatedFields, name) {
   }
 }
 // DELETE
-function removePerson(nametoremove) {
+function removePerson(idToRemove) {
   for (var i = 0; i < people.length + 1; i++) {
     var obj = people[i];
 
-    if (obj.name == nametoremove) {
+    if (obj.id == idToRemove) {
       people.splice(i, 1);
       return null;
     }
   }
 }
 // GET ONE
-function getOnePerson(name) {
+function getOnePerson(id) {
   for (var i = 0; i < people.length + 1; i++) {
     var obj = people[i];
 
-    if (obj.name == name) {
+    if (obj.id == id) {
       return people[i];
     }
   }

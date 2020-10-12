@@ -30,8 +30,8 @@ app.post("/people", (req, res) => {
 });
 
 // READ
-app.get("/people/:name", (req, res) => {
-  const result = Database.getOnePerson(req.params.name);
+app.get("/people/:id", (req, res) => {
+  const result = Database.getOnePerson(req.params.id);
 
   res.status(200).json({
     status: "success",
@@ -42,8 +42,8 @@ app.get("/people/:name", (req, res) => {
 });
 
 // UPDATE
-app.patch("/people/:name", (req, res) => {
-  const result = Database.updatePerson(req.body, req.params.name);
+app.patch("/people/:id", (req, res) => {
+  const result = Database.updatePerson(req.body, req.params.id);
 
   res.status(200).json({
     status: "success",
@@ -54,8 +54,8 @@ app.patch("/people/:name", (req, res) => {
 });
 
 // DELETE
-app.delete("/people/:name", (req, res) => {
-  const result = Database.removePerson(req.params.name);
+app.delete("/people/:id", (req, res) => {
+  const result = Database.removePerson(req.params.id);
 
   res.status(204).json({
     status: "success",
