@@ -1,38 +1,43 @@
-const people = [];
+const { rejects } = require("assert");
+const fs = require("fs");
+const { finished } = require("stream");
+const data = fs.readFileSync("database.json");
+const people = JSON.parse(data);
 
 // CREATE
-function addPerson(name, surname, age) {
+async function addPerson(name, surname, age) {
   const id = Date.now();
   people.push({ name, surname, age, id });
-
+  await saveFile();
   return { name, surname, age, id };
 }
+
 // READ
 function getAllPersons() {
   return people;
 }
 // UPDATE
-function updatePerson(updatedFields, id) {
+async function updatePerson(updatedFields, id) {
   const keys = Object.keys(updatedFields);
 
   for (var i = 0; i < people.length; i++) {
-    var obj = people[i];
-
-    if (obj.id == id) {
+    if (people[i].id == id) {
       for (var index = 0; index < keys.length; index++) {
         people[i][keys[index]] = updatedFields[keys[index]];
       }
-      return people;
+      await saveFile();
+      return people[i];
     }
   }
 }
 // DELETE
-function removePerson(idToRemove) {
+async function removePerson(idToRemove) {
   for (var i = 0; i < people.length + 1; i++) {
     var obj = people[i];
 
     if (obj.id == idToRemove) {
       people.splice(i, 1);
+      await saveFile();
       return null;
     }
   }
@@ -47,6 +52,22 @@ function getOnePerson(id) {
     }
   }
 }
+
+// const saveFile = () => {
+//   const data = JSON.stringify(people, null, 2);
+//   fs.writeFile("database.json", data);
+// };
+
+const saveFile = () => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile("database.json", JSON.stringify(people, null, 2), (err) => {
+      if (err) reject("Could not write file");
+      resolve("Success");
+    });
+  });
+  // const data = JSON.stringify(people, null, 2);
+  // fs.writeFile("database.json", data);
+};
 
 module.exports = {
   addPerson: addPerson,
